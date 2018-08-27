@@ -69,6 +69,7 @@ namespace list {
   void erase(LinkedList& l, int index, int count) {
     // Remove count nodes, starting at index.
     // If index is out of bounds, do nothing.
+    // If count is zero or negative, do nothing.
     // If count is too big, remove until the end of the list.
   }
 
@@ -85,5 +86,7 @@ namespace list {
 
   void insert(LinkedList& l, char c, int index) {
     // Insert a new element at index.
+    // If index is equal to the size, append the element.
+    // If index is negative or greater than the size, do nothing.
   }
 }
