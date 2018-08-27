@@ -65,7 +65,14 @@ void testimpl(const Vector* v, const char* target, int line) {
     return;
   }
 
-  int len = strlen(target);
+  std::string str(v->data, v->data + v->length);
+  if(str != target) {
+    std::cout << "  Line " << std::setw(3) << line << ": Expected \"" << target << "\" but got \"" << str << "\"\n";
+    ERRORS += 1;
+    return;
+  }
+
+  int len = str.length();
   if(v->length != len) {
     std::cout << "  Line " << std::setw(3) << line << ": Expected length " << len << " but got " << v->length << "\n";
     ERRORS += 1;
@@ -80,10 +87,4 @@ void testimpl(const Vector* v, const char* target, int line) {
     return;
   }
 
-  std::string str(v->data, v->data + v->length);
-  if(str != target) {
-    std::cout << "  Line " << std::setw(3) << line << ": Expected \"" << target << "\" but got \"" << str << "\"\n";
-    ERRORS += 1;
-    return;
-  }
 }

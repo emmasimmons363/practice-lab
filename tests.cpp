@@ -154,7 +154,7 @@ void test_eraseAll() {
   test(t, "Heo, word!");
 
   eraseAll(*t, 'H');
-  test(t, "Heo, word!");
+  test(t, "eo, word!");
 
   eraseAll(*t, '!');
   test(t, "eo, word");
