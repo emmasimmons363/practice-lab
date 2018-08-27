@@ -22,7 +22,7 @@ namespace list {
 
 
 
-  // BASIC LIST OPERATIONS.  THESE SHOULD BE FAIRLY SIMPLE.
+  // BASIC OPERATIONS.  THESE SHOULD BE FAIRLY SIMPLE.
   char at(const LinkedList& l, int index) {
     // Return the character at index.
     // If index is out of bounds, return the null character.
@@ -56,7 +56,7 @@ namespace list {
 
 
 
-  // MORE COMPLICATED LIST OPERATIONS.  GOOD LUCK!
+  // MORE COMPLICATED OPERATIONS.  GOOD LUCK!
   void append(LinkedList& l, const LinkedList& other) {
     // Copy the contents of other onto the end of the list.
   }
