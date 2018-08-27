@@ -1,5 +1,10 @@
 #include "vector.h"
 
+void resize(Vector& v, int size) {
+  // Resize a vector's data array (if necessary).
+  // This method is not required, but you may find it useful.
+}
+
 namespace vector {
   // CREATION AND DELETION FUNCTIONS.  DO THESE FIRST!
   Vector* create() {
@@ -69,6 +74,7 @@ namespace vector {
   void erase(Vector& v, int index, int count) {
     // Remove count elements, starting at index.
     // If index is out of bounds, do nothing.
+    // If count is zero or negative, do nothing.
     // If count is too big, remove until the end of the vector.
   }
 
@@ -85,5 +91,7 @@ namespace vector {
 
   void insert(Vector& v, char c, int index) {
     // Insert a new element at index.
+    // If index is equal to the size, append the element.
+    // If index is negative or greater than the size, do nothing.
   }
 }

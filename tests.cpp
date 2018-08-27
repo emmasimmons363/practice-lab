@@ -4,11 +4,11 @@
 
 #include <cstring>
 #include <iostream>
-using namespace WRAP;
 
 // Preprocessor magic.
 #define Q(X) #X
 #define QUOTE(X) Q(X)
+using namespace WRAP;
 
 // Preprocessor macro for automatic line numbering:
 #define test(v, t) testimpl(v, t, __LINE__)
@@ -109,7 +109,7 @@ void test_destroy() {
   TYPE* t1 = create();
   destroy(t1);
 
-  TYPE* t2 = create("Archipelago!?");
+  TYPE* t2 = create("Archipelago.");
   destroy(t2);
 
   TYPE* t3 = 0;
@@ -133,6 +133,9 @@ void test_erase() {
   test(t, "Goodbye cruel world...");
 
   erase(*t, 7, 6);
+  test(t, "Goodbye world...");
+
+  erase(*t, 12, 0);
   test(t, "Goodbye world...");
 
   erase(*t, 14, 50);
@@ -176,14 +179,38 @@ void test_find() {
 void test_insert() {
   std::cout << "Testing " QUOTE(WRAP) "::insert()\n";
 
+  TYPE* t = create();
+  insert(*t, 'o', 0);
+  test(t, "o");
 
+  insert(*t, 'O', 0);
+  test(t, "Oo");
+
+  insert(*t, 's', 2);
+  test(t, "Oos");
+
+  insert(*t, 'p', 2);
+  test(t, "Oops");
+
+  insert(*t, '?', 4);
+  test(t, "Oops?");
+
+  insert(*t, '!', -1);
+  test(t, "Oops?");
+
+  insert(*t, '!', 9);
+  test(t, "Oops?");
+  destroy(t);
 }
 
 void test_pop() {
   std::cout << "Testing " QUOTE(WRAP) "::pop()\n";
 
-  TYPE* t = create("Pox!");
+  TYPE* t = create("Poxy!");
   test(pop(*t), '!');
+  test(t, "Poxy");
+
+  test(pop(*t), 'y');
   test(t, "Pox");
 
   test(pop(*t), 'x');
@@ -212,6 +239,12 @@ void test_push() {
 
   push(*t, 'x');
   test(t, "Box");
+
+  push(*t, 'e');
+  test(t, "Boxe");
+
+  push(*t, 'n');
+  test(t, "Boxen");
   destroy(t);
 }
 
@@ -230,14 +263,17 @@ void test_length() {
 void test_shift() {
   std::cout << "Testing " QUOTE(WRAP) "::shift()\n";
 
-  TYPE* t = create("Cat?");
+  TYPE* t = create("Cats?");
   test(shift(*t), 'C');
-  test(t, "at?");
+  test(t, "ats?");
 
   test(shift(*t), 'a');
-  test(t, "t?");
+  test(t, "ts?");
 
   test(shift(*t), 't');
+  test(t, "s?");
+
+  test(shift(*t), 's');
   test(t, "?");
 
   test(shift(*t), '?');
@@ -283,9 +319,9 @@ int main(int argc, char* argv[]) {
 
   // Basic operations.
   test_at();
+  test_length();
   test_pop();
   test_push();
-  test_length();
   test_shift();
   test_unshift();
 
